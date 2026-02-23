@@ -1,0 +1,91 @@
+\input{praeambel}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs} % for nicer lines
+
+\usepackage{titling}
+\setlength{\droptitle}{-10em}
+
+\newenvironment{timeline}{%
+    \begin{longtable}{@{} p{1.5cm} p{9cm} p{2.5cm} @{}}
+    \multicolumn{3}{l}{\textbf{Timeline}} \\
+    \toprule
+      \textbf{Datum} & \textbf{Aktivität} & \textbf{Aufwand} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{3}{l}{\textbf{Timeline (Fortsetzung)}} \\
+    \toprule
+    \textbf{Datum} & \textbf{Aktivität} & \textbf{Aufwand} \\
+    \midrule
+    \endhead
+    \midrule
+    \multicolumn{3}{r}{{Weiter nächste Seite}} \\
+    \endfoot
+    \bottomrule
+    \endlastfoot
+}{%
+    \end{longtable}
+}
+
+% Center the title page
+\newgeometry{hmarginratio=1:1}
+
+\title{Diagrams as a Service \\ \small Forschungstagebuch}
+\date{31. März 2026}
+\author{Henri Heyden \\%
+ \small stu240825 \\%
+ \small Christian-Albrechts-Universität zu Kiel%
+}
+
+\begin{document}
+    \maketitle
+    
+    \noindent
+    Für mein Forschungsprojekt im Wintersemester 2025/26, habe ich wie nach folgender Timeline gearbeitet.
+    Es ist empfehlenswert für Kontext vorerst den Bericht über das Forschungsprojekt zu lesen.
+
+    \begin{timeline}
+        30.10.25 & Beginn des Forschungsprojekts; Onboarding in die KIELER Infrastruktur. & 5 Stunden \\
+
+        6.11.25 & Aufsetzen und Konfiguration von Git repositories und VS Code workspaces um am Projekt arbeiten zu können; Aufsetzen von KGT-Server ohne Microlayout sowie KGT Beispielen; Fixes um simple Beispiele ohne Abstürze laufen zu lassen; nötige Nullchecks; Heuristik um Textgrößen abschätzen zu können; Anpassung von Client Klassen und Typprüfungen; Start Implementierung Microlayout Abschätzung. & 6 Stunden \\
+
+        14.11.25 & Einführende Präsentation. & 6 Stunden \\
+
+        19.11.25 & Aufsetzen von Server Quellcode in Eclipse um Porten leichter zu machen; Implementierung von diversen internen Funktionen für Renderings die flächenplatziert sind. & 5 Stunden \\
+
+        20.11.25 & Umformatieren und Säubern von Code; Korrigieren einiger Typprüfungen; Implementierung von anderen Funktionen für flächenplatzierte Renderings und relevante Typprüfungen; Fixes; Warnungen für ungetestete Methoden; Implementierung von wichtigen Funktionen für punktplatzierte Renderings. & 5 Stunden \\
+
+        26.11.25 & Navigation im Server Code um Implementierung der Textgrößen nachvollziehen zu können; Implementierung weiterer Funktionen für punktplatzierte Renderings; Implementierung der Abschätzung von Größen von Bildern (\lstinline|KImage|); Start der Implementierung der Einschätzung von rasterplatzierten Renderings und allgemeinen wichtigen Funktionen; Fixes; weitere Einschätzung der Implementierung. & 7 Stunden \\
+
+        11.12.25 & Start der Implementierung von Microlayout Berechnung für ersten Durchstich; Fixes; Weitere Arbeit an rasterplatzierten Renderings. & 4 Stunden \\
+
+        7.1.26 & Planung der weiteren Implementierung; Implementierung von vielen wichtigen Funktionen um die Größe von Renderings nach dem Makrolayout zu berechnen. & 4 Stunden \\
+
+        15.1.26 & Weitere Planung und Priorisierung der weiteren Implementierung; Berücksichtigung von punktplatzierten Renderings im Microlayout-Berechnungs Schritt; Fixes und Säubern des Codes; Implementierung der Microlayout Berechnung von Renderings innerhalb Renderings (\lstinline|KContainerRenderings|). & 5 Stunden \\
+
+        20.1.26 & Säubern des Codes für die Microlayout Berechnung; Implementierung der Navigation im \lstinline|SKGraph| für Knoten und Labels; Fixes & 4 Stunden \\
+
+        22.1.26 & Viel Säubern und viele Fixes; Teilweise Implementierung der Microlayout Berechnung Renderings welche mithilfe von \lstinline|KDecoratorPlacementData| plaziert werden. & 4 Stunden \\
+        
+        24.1.26 & Weiteres Säubern und wichtige Fixes; Planung wie die minimale Größe von \lstinline|KNodes| während der Microlayout Schätzung herausgefunden wird; nachdenken wie zwischen verschiedenen Kind-Typen einer \lstinline|KNode| in der Microlayout Berechnung unterschieden werden muss; Versuch das generierte Padding in einem Graphen zu entfernen & 6 Stunden \\
+
+        25.1.26 & Implementierung der \lstinline|KDecoratorPlacementData| Klasse und einer dazugehörigen Typprüfung. & 1 Stunde \\
+
+        26.1.26 & Vorbereitung und Präsentation der Zwischenergebnisse. & 5 Stunden \\
+
+        29.1.26 & Fixes. & 2 Stunden \\
+
+        4.2.26 & Typprüfung für \lstinline|KRenderingLibrary| Klasse; Implementierung einer Suchfunktion, die in einem Graphen die jeweilige \lstinline|KRenderingLibrary| zurückgibt. & 2 Stunden. \\
+
+        6.2.26 & Anfang Implementierung einer Test-Suite um Client Microlayout Funktionen anhand von Beispielen zu testen und mit Server Microlayout zu vergleichen; erfolgreiches Entfernen von Padding; Anfang einer Implementierung der \lstinline|KRenderingRef| Resolution; Fixes. & 5 Stunden
+    \end{timeline}
+    
+    \noindent
+    Somit ergibt sich insgesamt ein Zeitaufwand von 76 Stunden.
+    Es sei angemerkt, dass sehr viel Debugging und Arbeit anhand Beispielen nötig war, weswegen einige Zeiten unproportional zu den Anmerkungen vorkommen können.
+
+    Die wesentliche Arbeit in dem Forschungsprojekt lässt sich auch anhand meiner Änderungen in dem folgenden Repository vermerken: Klighd-Vscode (\url{https://github.com/kieler/klighd-vscode/tree/nre/henri-fork}).
+    Die einführende Präsentation sowie die Zwischenpräsentation sind zu finden unter \url{https://docs.google.com/presentation/d/1q_nDqAl1FoWcPzSdqEaZ6JHt0WQSJ5WqP9HgScHuBlg/}.
+    
+\end{document}
+

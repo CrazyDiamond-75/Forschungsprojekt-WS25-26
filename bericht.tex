@@ -1,0 +1,58 @@
+\input{praeambel}
+
+\usepackage{titling}
+\setlength{\droptitle}{-10em}
+
+% Center the title page
+\newgeometry{hmarginratio=1:1}
+
+\title{Diagrams as a Service \\ \small Forschungsbericht}
+\date{31. März 2026}
+\author{Henri Heyden \\%
+ \small stu240825 \\%
+ \small Christian-Albrechts-Universität zu Kiel%
+}
+
+\begin{document}
+    \maketitle
+    
+    \section{Einleitung}
+    Dieses Semester habe ich im Rahmen der Eingebettete- und Echtzeitsysteme (RTSys) AG geforscht zum Thema \emph{Diagrams as a Service}.
+    Die RTSys AG beschäftigt sich unter anderem damit eine synchrone Programmiersprache namens \emph{SCCharts} zu entwickeln, welche verwendet wird um Sicherheitssysteme zu programmieren.
+    Die SCCharts sind ähnlich wie Automaten und Graphen, weswegen die Entwicklung in dieser Sprache generell graphisch gestützt wird durch eine automatische Visualisierung.
+    Somit befasst sich die RTSys AG viel im Themenbereich der automatischen Synthese und Rendering von Diagrammen basierend auf Programmiersprachen.
+    Für SCCharts- und sogenannte \emph{KGTs} existiert bereits mit KIELER Lightweight Diagrams (KlighD) eine Synthese in Form eines LSP-Servers der implementiert wurde in Java.
+    Ein Diagramm wird dann vom Server zum Client geschickt, welcher dieses anzeigen kann.
+    
+    KlighD ist ein sehr praktisches und flexibles Werkzeug, weswegen man offenbar auch ähnliche Synthesen für andere Programmiersprachen generieren will.
+    Die Pipeline ist allerdings sehr komplex und beinhaltet viele Schritte, weswegen sie sehr schwer ist direkt für Datenquellen außer SCCharts und KGTs zu implementieren.
+    Dementsprechend ist die Idee des Projektes \emph{Diagrams as a Service} wichtige Layouting Schritte die KlighD übernimmt auf dem Client zu implementieren.
+    So könnte ein Synthese für eine andere Programmiersprache ein viel leichterer LSP-Server sein, der nicht in die komplexe Materie von KlighD eindringt.
+
+    In meiner Arbeit am Forschungsprojekt befasste ich mich konkret mit dem \emph{Micro Layout} Schritt, welcher auf dem Client implementiert werden muss.
+    Der Micro Layout Schritt besteht selbst aus zwei Prozeduren zwischen denen noch das \emph{Macro Layout} liegt.
+    Diese drei Schritte bestimmen essentiell die Größen und Abstände zwischen Containern und anderen Elementen im Graphen wie folgt.
+
+    \begin{description}
+        \item[Micro Layout Estimation] Die minimalen Größen von den einzelnen Knoten im Graphen werden geschätzt, wobei Unterknoten auch berücksichtigt werden.
+
+        \item[Macro Layout] Die Abstände zwischen Knoten und Elementen innerhalb Knoten werden berechnet.
+            Diesen Teil übernimmt \emph{ELK} -- ein Werkzeug das von der Eclipse Foundation entwickelt wird.
+
+        \item[Micro Layout Calculation] Die Größen aller Felder innerhalb von Knoten und anderen Elementen werden erneut bestimmt basierend auf den Größen vom Makro Layout.
+    \end{description}
+
+    \section{Ziele}
+    Das Hauptziel des Forschungsprojektes war es den Micro Layout Schritt auf Client Seite zu implementieren.
+    Darüber hinaus gab es mehrere optionale Ziele, die den Zweck hatten die Programmierung einer Synthese zu vereinfachen.
+    Dafür muss das JSON Schema, welches von einer Synthese verwendet wird, angepasst werden, sodass gewisse KlighD Typen vollständig existieren und validiert zum Client übertragen werden können.
+    Dies würde außerdem erheblich die Entwicklung eines zukünftigen Tools erleichtern, welches als Framework dazu dienen soll um leicht eigene Synthesen zu erstellen.
+
+    \section{Ergebnisse}
+    Die Micro Layout Schritte konnten in der Zeit zum Teil implementiert werden.
+    Dabei wurden die wichtigsten Features der originellen KlighD Implementierung auf dem Client umgesetzt.
+    
+    \section{Anhang}
+    Die einführende Präsentation sowie die Zwischenpräsentation sind zu finden unter \url{https://docs.google.com/presentation/d/1q_nDqAl1FoWcPzSdqEaZ6JHt0WQSJ5WqP9HgScHuBlg/}.    
+\end{document}
+
